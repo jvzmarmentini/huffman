@@ -1,10 +1,8 @@
-import java.util.LinkedList;
-
 /**
  * PriorityQueue
  */
 public class PriorityQueue {
-    private LinkedList<Node> queue;
+    private MinHeap<Node> queue;
 
     public PriorityQueue() {
         queue = new LinkedList<>();
@@ -25,13 +23,14 @@ public class PriorityQueue {
     }
 
     public Node pull() {
-        Node highest;
+        Node highest = new Node(Integer.MIN_VALUE, 0);
 
         for (Node node : queue) {
             if (highest.priority < node.priority) {
                 highest = node;
             }
         }
+
         queue.remove(highest);
 
         return highest;
