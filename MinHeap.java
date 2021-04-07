@@ -8,20 +8,21 @@ public class MinHeap<T extends Comparable<T>> {
     }
 
     /**
+     * Troca de posicao dois elementos do heap
      * 
-     * @param child
-     * @param parent
+     * @param pos1
+     * @param pos2
      */
-    private void swap(int child, int parent) {
-        T e = minHeap.get(parent);
-        minHeap.set(parent, minHeap.get(child));
-        minHeap.set(child, e);
+    private void swap(int pos1, int pos2) {
+        T e = minHeap.get(pos1);
+        minHeap.set(pos1, minHeap.get(pos2));
+        minHeap.set(pos2, e);
     }
 
     /**
      * Insere um valor inteiro no heap.
      * 
-     * @param n o número a ser inserido.
+     * @param e element a ser inserido
      */
     public void insert(T e) {
         minHeap.add(e);
@@ -29,8 +30,11 @@ public class MinHeap<T extends Comparable<T>> {
     }
 
     /**
+     * HeapifyUp checa se um elemento do heap esta correto em relação ao seu pai.
+     * Essa funcao é recursiva, ou seja, ele pode percorrer o heap até a raiz, se
+     * necessário.
      * 
-     * @param pos
+     * @param child
      */
     private void heapifyUp(int child) {
         int parent = Math.floorDiv(child - 1, 2);
@@ -46,7 +50,7 @@ public class MinHeap<T extends Comparable<T>> {
      * Método para a remoção e retorno do menor elemento do heap. Caso o heap esteja
      * vazio, um valor null deve ser retornado.
      * 
-     * @return o menor valor do heap.
+     * @return T o menor elemento do heap.
      */
     public T removeMin() {
         if (isEmpty())
@@ -59,6 +63,10 @@ public class MinHeap<T extends Comparable<T>> {
     }
 
     /**
+     * HeapfyDown recebe algum elemento e checa se seus filhos são menores que ele.
+     * Se não forem, a funcao troca ele e o menor de posição. Essa função é
+     * recursiva, ou seja, percorrerá o heap até o valor não ter mais filhos, se
+     * necessário.
      * 
      * @param parent
      */
@@ -83,7 +91,7 @@ public class MinHeap<T extends Comparable<T>> {
      * Método que acessa e retorna do menor elemento do heap. Caso o heap esteja
      * vazio, um valor null deve ser retornado.
      * 
-     * @return o menor valor do heap.
+     * @return T o menor valor do heap.
      */
     public T min() {
         return (isEmpty()) ? null : minHeap.get(0);
